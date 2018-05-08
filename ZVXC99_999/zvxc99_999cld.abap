@@ -20,8 +20,8 @@ CLASS lcl_zvxc99_999 DEFINITION.
   PROTECTED SECTION.
 
     TYPES: BEGIN OF ts_data,
-             xcode TYPE zva_xcpos-xcode,
-             vkorg TYPE zva_xcpos-vkorg,
+             vbeln TYPE vbak-vbeln,
+             vkorg TYPE vbak-vkorg,
            END OF ts_data.
 
     METHODS: bal_log_create,
