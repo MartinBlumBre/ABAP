@@ -7,7 +7,7 @@
 
  REPORT zvxc99_999 MESSAGE-ID zv01.
 
- DATA: gs_xcakt TYPE zva_xcakt.
+ DATA: gs_vbak TYPE vbak.
 
 * Makrodefinitionen
  DEFINE msg.
@@ -23,7 +23,7 @@
 
 * Selektionsbild
  SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001.
- SELECT-OPTIONS: s_xcode FOR gs_xcakt-xcode NO INTERVALS.
+ SELECT-OPTIONS: s_vbeln FOR gs_vbak-vbeln NO INTERVALS.
  SELECTION-SCREEN END OF BLOCK b1.
  SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE text-002.
  PARAMETERS: p_test TYPE c AS CHECKBOX DEFAULT 'X'.
