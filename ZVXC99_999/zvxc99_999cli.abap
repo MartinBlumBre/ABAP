@@ -108,10 +108,10 @@ CLASS lcl_zvxc99_999 IMPLEMENTATION.
 *----------------------------------------------------------------------*
   METHOD select_data.
 
-*    SELECT * FROM zva_xcpos
+*    SELECT * FROM vbak
 *        INTO CORRESPONDING FIELDS OF TABLE mt_data
 *        UP TO p_anzrow ROWS
-*        WHERE xcode IN s_xcode.
+*        WHERE vbeln IN s_vbeln.
 
   ENDMETHOD.                    "select_data
 
@@ -122,8 +122,7 @@ CLASS lcl_zvxc99_999 IMPLEMENTATION.
 *----------------------------------------------------------------------*
   METHOD update_data.
 
-    DATA: lv_akdat      TYPE zzv_akdat,
-          lv_anz_commit TYPE i,
+    DATA: lv_anz_commit TYPE i,
           lv_anz        TYPE i,
           lv_tabix      LIKE sy-tabix.
 
@@ -131,15 +130,15 @@ CLASS lcl_zvxc99_999 IMPLEMENTATION.
       lv_tabix = sy-tabix.
       IF p_test IS INITIAL.
 *        UPDATE .... SET ...
-*            WHERE xcode = ms_data-xcode.
+*            WHERE vbeln = ms_data-vbeln.
         IF sy-subrc = 0.
           ADD 1 TO lv_anz.
           ADD 1 TO lv_anz_commit.
           IF p_logs IS NOT INITIAL.
-            msg 'ZV01' 'I' 018 ms_data-xcode 'xxx' 'geändert auf' 'yyy'. "Anwendungslog
+            msg 'ZV01' 'I' 018 ms_data-vbeln 'xxx' 'geändert auf' 'yyy'. "Anwendungslog
           ENDIF.
         ELSE.
-          msg 'ZV01' 'E' 018 'Fehler bei Update Datensatz' ms_data-xcode sy-msgv1 sy-msgv2. "Anwendungslog
+          msg 'ZV01' 'E' 018 'Fehler bei Update Datensatz' ms_data-vbeln sy-msgv1 sy-msgv2. "Anwendungslog
         ENDIF.
         IF lv_anz_commit = p_anzcom.
           COMMIT WORK AND WAIT.
@@ -148,7 +147,7 @@ CLASS lcl_zvxc99_999 IMPLEMENTATION.
       ELSE.
         ADD 1 TO lv_anz.
         IF p_logs IS NOT INITIAL.
-          msg 'ZV01' 'I' 018 ms_data-xcode 'xxx' 'würde geändert auf' 'yyy'. "Anwendungslog
+          msg 'ZV01' 'I' 018 ms_data-vbeln 'xxx' 'würde geändert auf' 'yyy'. "Anwendungslog
         ENDIF.
       ENDIF.
     ENDLOOP.
